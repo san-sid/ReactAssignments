@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="antra homework 1" />
+    <meta name="author" content="Sanjay" />
+    <title>Sign Up Form - AS1</title>
+    <link href="./style.css" rel="stylesheet" />
+</head>
+<body>
+    <h1><center>Sign Up</center></h1>
+    <form>
+        <div class="flex-container-row">
+            <input type="text" id="first-name" name="first-name" placeholder="First Name">
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+        </div>
+        <div class="flex-container-col">
+            <input type="text" id="mobile-no" name="mobile-no" placeholder="Mobile No.">
+        </div>
+        <div class="flex-container-col">
+            <input type="text" id="email-address" name="email-address" placeholder="Email Address">
+        </div>
+        <div class="flex-container-row">
+            <input type="password" id="password" name="password" placeholder="Password">
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+        </div>
+        <div class="form__input-1">
+            <div>
+                <input type="checkbox" class="form__input" id="agree" />
+                <label for="agree" class="form__label">I Agree</label>
+            </div>
+            <div>
+                <p class="disclaimer">
+                    By clicking <span class="register">Register</span>, you agree to the
+                    <span class="terms">Terms and Conditions</span> set out by this
+                    website, including our Cookie Use.
+                </p>
+            </div>
+            <div class="form__buttons flex-container-row">
+                <button type="submit" class="form__button form__button-blue">Register</button>
+                <button type="button" class="form__button form__button-green">Sign In</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
