@@ -1,0 +1,103 @@
+1.Why are closures useful in JavaScript? Give an example use case.
+Closures in JavaScript are usefull because they enable functions to retain access to variables from their lexical scope even after the outer function has finished executing. 
+This capability is essential for maintaining state, creating private variables, and building flexible and maintainable JavaScript code.
+Closures are usefull in mainly three reasons in the programming , In the concept of encapusulation they allow you to encapsulate state and behavior with in a function scope , keeping variables private and protected from outside interference .
+	For the Data Privacy, the variables enclosed within the closures are not accessible from outside , which helps in creating modules and API's with controlled access to data
+	Also they are essential in creating callback function and handling asynchronous Javascript ,where functions neeed to remember their context even after they are passes around or executed later .
+
+We can use a closure to maintain a counter that increments each time the function is called, generating a unique ID.
+function createIDGenerator() {
+  let id = 0;  // This variable is captured by the closure
+
+  return function() {
+    id++;  // Increment the captured variable
+    return id;  // Return the new ID
+  };
+}
+
+// Usage:
+const generateID = createIDGenerator();
+console.log(generateID());  // Output: 1
+console.log(generateID());  // Output: 2
+console.log(generateID());  // Output: 3
+
+
+2.When should you choose to use “let” or “const”
+We can use const: when the variable should not be reassigned after its initial value is set,for constant values that do not change, for objects and arrays that you will modify, but you don't plan to reassign the variable.By using const the value stays the same.
+We can use let When we need to reassign the variable later.For loop counters, accumulators, or variables that change based on conditions.using ley the value can be changed when assigned.
+
+3.Give an example of a common mistake related to hoisting and explain how to fix it.
+When using var, the variable is hoisted to the top of its scope and initialized with undefined. This can lead to bugs if you try to use the variable before it's declared.
+eg:
+function example() {
+  console.log(value);  // Output: undefined
+  var value = 10;
+  console.log(value);  // Output: 10
+}
+
+example();
+
+var value; is hoisted to the top of the function scope.
+The assignment value = 10; happens after the first console.log, so the first console.log(value); outputs undefined.
+The second console.log(value); outputs 10 after the assignment.
+To fix that we can use let or const
+Using let or const prevents this issue because they are hoisted to the top of the block but are not initialized. This means accessing them before declaration results in a ReferenceError.
+
+fixed example: function example() {
+  console.log(value);  // ReferenceError: Cannot access 'value' before initialization
+  let value = 10;
+  console.log(value);  // Output: 10
+}
+
+example();
+declarations are hoisted to the top of their block, but they remain uninitialized in the "temporal dead zone" (TDZ) until the actual declaration is encountered.
+Attempting to access the variable before its declaration results in a ReferenceError, making it clear that the variable is being used before it is declared.
+
+4:What will the outcome of each console.log() be after the function calls? Why?
+const arr = [1, 2];
+
+function foo1(arg) {
+  arg.push(3);
+}
+foo1(arr);
+console.log(arr);  // Output: [1, 2, 3]
+foo1 takes arr as an argument and pushes 3 into it.
+Since arr is an array (a reference type), modifying it inside the function affects the original array.
+Therefore, console.log(arr) outputs [1, 2, 3].
+
+function foo2(arg) {
+  arg = [1, 2, 3, 4];
+}
+foo2(arr);
+console.log(arr);  // Output: [1, 2, 3]
+foo2 takes arr as an argument and reassigns arg to a new array [1, 2, 3, 4].
+This reassignment does not affect the original arr outside the function because arg now points to a new array, not the original one.
+Therefore, console.log(arr) still outputs [1, 2, 3] (the result of the modification done by foo1).
+
+function foo3(arg) {
+  let b = arg;
+  b.push(3);
+}
+foo3(arr);
+console.log(arr);  // Output: [1, 2, 3, 3]
+foo3 takes arr as an argument and assigns it to b.
+b is now a reference to the same array as arg (which is arr).
+Pushing 3 to b modifies the original array arr.
+Therefore, console.log(arr) outputs [1, 2, 3, 3].
+
+function foo4(arg) {
+  let b = arg;
+  b = [1, 2, 3, 4];
+}
+foo4(arr);
+console.log(arr);  // Output: [1, 2, 3, 3]
+
+foo4 takes arr as an argument and assigns it to b.
+b is now a reference to the same array as arg (which is arr).
+Reassigning b to a new array [1, 2, 3, 4] does not affect the original arr.
+Therefore, console.log(arr) still outputs [1, 2, 3, 3] .
+
+
+
+
+
