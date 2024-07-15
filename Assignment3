@@ -1,0 +1,92 @@
+Explain what is prototype and what is prototype chain in your own words
+Prototype is a object that inherit properties and methods from other objects. It's a fundamental concept in JavaScript's OOPS concept.
+The Prototype chain is a chain of objects linked through their prototypes
+
+Implement your versions of the following Array methods (choose 6).
+map, filter, reduce, every, find, and includes.
+1.map
+Array.prototype.myMap = function(callback) {
+    let resultArray = [];
+    for (let i = 0; i < this.length; i++) {
+        resultArray.push(callback(this[i], i, this));
+    }
+    return resultArray;
+};
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.myMap(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+2.filter
+Array.prototype.myFilter = function(callback) {
+    let resultArray = [];
+    for (let i = 0; i < this.length; i++) {
+        if (callback(this[i], i, this)) {
+            resultArray.push(this[i]);
+        }
+    }
+    return resultArray;
+};
+
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const evens = numbers.myFilter(num => num % 2 === 0);
+console.log(evens); // [2, 4]
+
+3.reduce
+Array.prototype.myReduce = function(callback, initialValue) {
+    let accumulator = initialValue === undefined ? this[0] : initialValue;
+    let startIndex = initialValue === undefined ? 1 : 0;
+
+    for (let i = startIndex; i < this.length; i++) {
+        accumulator = callback(accumulator, this[i], i, this);
+    }
+    return accumulator;
+};
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const sum = numbers.myReduce((acc, num) => acc + num, 0);
+console.log(sum); // 10
+
+4.every
+Array.prototype.myEvery = function(callback) {
+    for (let i = 0; i < this.length; i++) {
+        if (!callback(this[i], i, this)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const allPositive = numbers.myEvery(num => num > 0);
+console.log(allPositive); // true
+
+5.find
+Array.prototype.myFind = function(callback) {
+    for (let i = 0; i < this.length; i++) {
+        if (callback(this[i], i, this)) {
+            return this[i];
+        }
+    }
+    return undefined;
+};
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const found = numbers.myFind(num => num > 2);
+console.log(found); // 3
+
+6.include
+Array.prototype.myIncludes = function(element) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === element) {
+            return true;
+        }
+    }
+    return false;
+};
+// Example usage:
+const numbers = [1, 2, 3, 4];
+const includesTwo = numbers.myIncludes(2);
+console.log(includesTwo); // true
+
