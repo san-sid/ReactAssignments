@@ -1,0 +1,22 @@
+What is the difference between instance methods and static methods?
+To create a instance method we neeed to craeate an object of class to call these methods, these are the methods that belong to instances of a class.It can access and modify the instance property and also other instance method.
+where as static belongs to the class itself and they are not tied to any specefic instance or classes , it can be only accessed by static properties and other static methods. cannot access instance properties and call instance methods 
+it is called on the class itself.
+
+How does Javascript handle concurrency?
+It handles concurrency with an event-driven, non-blocking I/O model, utilizing an event loop. It uses asynchronous programming techniques like callbacks, promises, and async/await to manage tasks.
+This allows JavaScript to handle multiple operations concurrently without blocking the main thread.
+
+What is async/await? How does it differ from using the promise instance methods?
+Async/await is syntactic sugar for promises, which makes asynchronous code appear synchronous. It increases readability and error handling by utilizing try/catch blocks. Unlike promises, which use.then() and.catch() chaining
+await suspends the async function until the promise is resolved. This leads to better, more maintainable code.
+
+Can you use await outside of an async function?
+No, you can't use 'await' outside of a 'async' function. The 'await' keyword is only acceptable inside functions marked with 'async'. It is used to stop the execution of the 'async' function until a promise is resolved
+resulting in synchronous behavior inside that context. Trying to utilize 'await' outside of a 'async' function will result in a syntax error.
+
+What is callback hell and why is it considered a problem?
+Callback hell refers to highly nested callbacks used in JavaScript to perform asynchronous activities, which result in code that is illegible and difficult to maintain owing to excessive indentation and complexity.It complicates error handling and can result in the 
+"pyramid of doom," in which the code structure gets complicated. To solve this, current JavaScript encourages the use of promises or async/await, which provide cleaner, more sequential approaches to dealing with asynchronous processes,
+considerably increasing code readability and maintenance.
+
